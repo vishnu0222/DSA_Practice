@@ -1,0 +1,19 @@
+Approach : This code removes all occurrences of a given value val from a vector nums in-place. It uses a single loop to iterate through the vector, 
+          and whenever an element is not equal to val, it overwrites the element at the index pointer with the current element, 
+          effectively shifting valid elements to the front. The index pointer tracks the position for the next valid element, 
+          and the count variable tracks the number of valid elements. Finally, the function returns the count of elements that are not equal to val.
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int index=0,count=0;
+        for(int i=0;i<nums.size();i++) {
+            if(nums[i]!=val){
+                nums[index] = nums[i];
+                index++;
+                count++;
+            }
+        }
+        return count;
+    }
+};
