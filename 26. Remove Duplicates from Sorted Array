@@ -1,0 +1,26 @@
+This function removes duplicates from a sorted vector in-place and returns the number of unique elements. 
+It uses two pointers: `pointer1` tracks the last unique element, and `pointer2` traverses the vector. 
+Whenever a new unique value is found (`nums[pointer1] != nums[pointer2]`), it is placed at the `index` position, and both `index` and `pointer1` are updated.
+After the loop, the last unique element is added, and the function returns the count of unique elements. The algorithm runs in \(O(n)\) time and uses \(O(1)\) additional space, modifying the input vector directly.
+
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        int index=0,count=0;
+        int pointer1=0,pointer2=1;
+        while(pointer2<nums.size()) {
+            if(nums[pointer1]!=nums[pointer2]) {
+                nums[index]=nums[pointer1];
+                index++;
+                count++;
+                pointer1=pointer2;
+            }
+            pointer2++;
+        }
+        nums[index] = nums[pointer1];
+        index++;
+        return index;
+    }
+};
