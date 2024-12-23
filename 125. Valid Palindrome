@@ -1,0 +1,25 @@
+Explanation : The code uses a two-pointer approach to determine if the input string is a palindrome by focusing only on alphanumeric characters and ignoring others. It initializes one pointer at the start and another at the end of the string, incrementing or decrementing them to skip non-alphanumeric characters using `isalnum`. For valid characters, it compares them case-insensitively using `tolower`; if they differ, the string is not a palindrome. If all comparisons succeed as the pointers meet in the middle, the string is a palindrome. This ensures the logic handles spaces, punctuation, and case variations effectively.
+
+Code : 
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int pointer1 = 0,pointer2 = s.length()-1;
+        while(pointer1<pointer2){
+            while(!isalnum(s[pointer1]) && pointer1<pointer2){
+                pointer1++;
+            }
+            while(!isalnum(s[pointer2]) && pointer1<pointer2){
+                pointer2--;
+            }
+            if(tolower(s[pointer1])==tolower(s[pointer2])){
+                pointer1++;
+                pointer2--;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+};
