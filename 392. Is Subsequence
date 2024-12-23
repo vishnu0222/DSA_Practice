@@ -1,0 +1,24 @@
+Explanation : The code checks if string `s` is a subsequence of string `t` using two pointers. Pointer `pointer1` tracks the current character in `s`, while `pointer2` tracks the current character in `t`. It iterates through `t` using a loop, and whenever the characters at both pointers match, it increments both pointers. If they don’t match, only `pointer2` is incremented to continue searching in `t`. At the end, if `pointer1` reaches the length of `s`, it means all characters of `s` were found in order within `t`, and the function returns `true`; otherwise, it returns `false`.
+
+Code : 
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int pointer1 = 0,pointer2 = 0;
+        for(int i=0;i<t.length();i++) {
+            if(pointer2<=t.length() && s[pointer1]==t[pointer2]){
+                pointer1++;
+                pointer2++;
+            }
+            else{
+                pointer2++;
+            }
+        }
+        if(pointer1 == s.length()) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
