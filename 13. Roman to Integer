@@ -1,0 +1,27 @@
+Explanation : This code converts a Roman numeral string to its integer equivalent using a hash map to store the values of Roman symbols. It iterates through the string and checks if the current symbol has a smaller value than the next symbol (e.g., `IV` where `I < V`). If so, the current value is subtracted from the total (to handle cases like `IV` or `IX`). Otherwise, the value is added to the total. This ensures correct handling of subtractive notation in Roman numerals while summing up the rest. The final total is returned as the integer representation of the Roman numeral.
+
+Code : 
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map<char, int> hashmap = {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+        int sum = 0;
+        for(int i=0;i<s.length();i++) {
+            if(hashmap[s[i]]<hashmap[s[i+1]]){
+                sum-=hashmap[s[i]];
+            }
+            else{
+                sum+=hashmap[s[i]];
+            }
+        }
+        return sum;
+    }
+};
