@@ -1,0 +1,28 @@
+Using "two pointer" technique.
+
+Explanation : The code checks if the `ransomNote` can be constructed using letters from the `magazine`. It sorts both strings to align characters in ascending order, then uses a two-pointer approach. Pointer `pointer1` iterates through `ransomNote`, and `pointer2` iterates through `magazine`. Whenever the characters at both pointers match, both pointers are incremented; otherwise, only `pointer2` moves forward to find a match. If `pointer1` reaches the length of `ransomNote`, it means all characters in `ransomNote` are present in `magazine` in sufficient quantity, and the function returns `true`; otherwise, it returns `false`.
+
+Code : 
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        int pointer1 = 0, pointer2 = 0;
+        sort(magazine.begin(),magazine.end());
+        sort(ransomNote.begin(),ransomNote.end());
+        for (int i=0;i<magazine.length();i++){
+            if(ransomNote[pointer1] == magazine[pointer2]){
+                pointer1++;
+                pointer2++;
+            }
+            else{
+                pointer2++;
+            }
+        }
+        if(pointer1 == ransomNote.length()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
