@@ -1,3 +1,25 @@
+Using hashmap:
+Explanation : This code checks if the `ransomNote` can be constructed using characters from the `magazine` by utilizing a hash map to count character frequencies. The first loop iterates through `magazine`, storing the frequency of each character in the hash map. The second loop goes through each character in `ransomNote` and checks if it exists in the hash map with sufficient frequency. If a character is found, its count is decremented; otherwise, the function returns `false`. If all characters in `ransomNote` are accounted for, the function returns `true`. This ensures efficient checking of character availability with \( O(n + m) \) time complexity.
+
+code : class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char, int> hashmap;
+        for(char it : magazine) {
+            hashmap[it]++;
+        }
+        for(char it: ransomNote) {
+            if(hashmap[it]>0){
+                hashmap[it]--;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
 Using "two pointer" technique.
 
 Explanation : The code checks if the `ransomNote` can be constructed using letters from the `magazine`. It sorts both strings to align characters in ascending order, then uses a two-pointer approach. Pointer `pointer1` iterates through `ransomNote`, and `pointer2` iterates through `magazine`. Whenever the characters at both pointers match, both pointers are incremented; otherwise, only `pointer2` moves forward to find a match. If `pointer1` reaches the length of `ransomNote`, it means all characters in `ransomNote` are present in `magazine` in sufficient quantity, and the function returns `true`; otherwise, it returns `false`.
