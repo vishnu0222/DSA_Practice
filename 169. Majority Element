@@ -1,0 +1,22 @@
+Explanation : This code identifies the majority element in an array using a hash map to count the frequency of each element. It first iterates through the array, storing the count of each number in the hash map. Then, it iterates over the hash map to find the element with the highest frequency that also satisfies the majority condition (\( \text{frequency} > n/2 \)), updating the result if such an element is found. Finally, the majority element is returned. The approach ensures \( O(n) \) time complexity with \( O(k) \) space, where \( k \) is the number of unique elements.
+
+Code : 
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size()/2;
+        unordered_map<int,int> hashmap;
+        for(int x:nums){
+            hashmap[x]++;
+        }
+        int max = 0,res=0;
+        for(const auto& it: hashmap){
+            if(it.second > max && it.second >=n){
+                max=it.second;
+                res = it.first;
+            }
+        }
+        return res;
+    }
+};
