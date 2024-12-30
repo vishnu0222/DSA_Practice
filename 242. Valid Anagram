@@ -1,0 +1,41 @@
+Naive Approach :
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        sort(s.begin(),s.end());
+        sort(t.begin(),t.end());
+        if(s==t){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
+
+Hashmap : 
+
+Explanation : This code checks if two strings, `s` and `t`, are anagrams by using a hash map to count character frequencies. First, it compares their lengths; if they differ, it returns `false`. It then iterates through `s`, incrementing the count for each character in the hash map. Next, it iterates through `t`, decrementing the count for each character. If any character in `t` doesn't exist in the hash map or has a frequency less than zero, it returns `false`. If all characters are processed and the hash map balances to zero, the function returns `true`, confirming the strings are anagrams.
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        unordered_map<char, int> hashmap;
+        if(s.length()!=t.length()){
+            return false;
+        }
+        for(char ch : s){
+            hashmap[ch]++;
+        }
+        for(char ch : t){
+            if(hashmap[ch]>0){
+                hashmap[ch]--;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+};
