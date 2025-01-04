@@ -1,0 +1,29 @@
+Explanation : 
+
+This code checks if the string `goal` can be obtained by rotating the string `s`. It first ensures both strings have the same length; otherwise, it returns `false`. If the strings are already equal, it returns `true`. The code then iterates through all possible rotations of `s` by splitting it into two substrings (`substr1` and `substr2`) at each position `x`, and concatenating them in reversed order. If any of these rotations matches `goal`, it returns `true`. If no match is found after all rotations, it returns `false`.
+
+Code : 
+
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        int x = 1,pointer1=0;
+        if(s.length()!=goal.length()) {
+            return false;
+        }
+        if(s==goal) {
+            return true;
+        }
+        while(x<s.length()){
+            string substr1 = s.substr(x,s.length()-1);
+            string substr2 = s.substr(0,x);
+            if(substr1+substr2 == goal){
+                return true;
+            }
+            else{
+                x++;
+            }
+        }
+        return false;
+    }
+};
