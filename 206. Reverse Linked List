@@ -1,0 +1,14 @@
+Explanation : This code reverses a linked list using recursion. It starts by handling the base case: if the list is empty (`head == NULL`) or has only one node (`head->next == NULL`), it simply returns `head` as the reversed list. For the recursive case, the function reverses the rest of the list by calling itself on `head->next`. Once the rest of the list is reversed, it adjusts the pointers: `head->next->next = head` links the current node back to the reversed list, and `head->next = NULL` breaks the forward connection to prevent cycles. Finally, it returns the `newHead`, which points to the last node of the original list and becomes the head of the reversed list.
+code:
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        ListNode* newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return newHead;
+    }
+};
