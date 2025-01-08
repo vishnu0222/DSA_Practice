@@ -1,0 +1,24 @@
+Explanation : This code removes duplicate nodes from a sorted linked list. It starts by initializing `current` to the head of the list and iterates through the list using a `while` loop until the second-to-last node. If the value of the `current` node matches the value of its `next` node, the duplicate node is bypassed by updating `current->next` to `current->next->next`, and the duplicate node is deleted using a temporary pointer `temp`. If there is no match, the `current` pointer moves to the next node. The function returns the `head` of the modified list, ensuring all duplicates are removed.
+
+code : 
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* current = head;
+        ListNode* temp = NULL;
+        if(head == NULL) {
+            return NULL;
+        }
+        while(current->next!=NULL){
+            if(current->val==current->next->val){
+                temp = current->next;
+                current->next = current->next->next;
+                delete temp;
+            }
+            else{
+                current = current->next;
+            }
+        }
+        return head;
+    }
+};
