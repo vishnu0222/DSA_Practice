@@ -1,0 +1,23 @@
+Explanation for Brute force approach : This code finds the middle node of a linked list by first calculating the total number of nodes in the list using a `while` loop that iterates through the list and increments a `count` variable. In a second traversal, it uses another `while` loop with a `newcount` variable to track the current position in the list. When `newcount` becomes greater than `count / 2` (integer division), it returns the current node (`temp`) as the middle node. This ensures the middle node is found regardless of whether the list has an odd or even number of nodes. The code works correctly but performs two passes through the list, making it less efficient than a one-pass solution.
+
+Code : 
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        int count = 0,newcount =0 ;
+        ListNode* current = head;
+        while(current!=NULL) {
+            count+=1;
+            current = current->next;
+        }
+        ListNode*temp = head;
+        while(temp!=NULL){
+            newcount+=1;
+            if(newcount>count/2){
+                return temp;
+            }
+            temp = temp->next;
+        }
+        return 0;
+    }
+};
