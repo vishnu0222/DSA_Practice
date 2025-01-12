@@ -1,0 +1,41 @@
+Two pointers : 
+This code uses the **Floyd’s Cycle Detection Algorithm (Tortoise and Hare)** to determine if a linked list contains a cycle. Two pointers, `slow` and `fast`, traverse the list at different speeds (`slow` moves one step, and `fast` moves two steps at a time). If there is a cycle, the two pointers will eventually meet because the faster pointer will "lap" the slower one. The `while` loop ensures safe traversal by checking that `fast` and `fast->next` are not `NULL`, preventing null pointer dereferencing. If the pointers meet, the function returns `true`, indicating a cycle; otherwise, it returns `false` after completing the traversal.
+
+code : 
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+Hashtable : 
+This code uses a **hash table (`unordered_map`)** to detect a cycle in a linked list. It traverses the list node by node, storing the address of each visited node (`current`) as a key in the `hashmap`. If at any point during the traversal the current node's address already exists in the `hashmap` (indicating it has been visited before), the function concludes that there is a cycle and returns `true`. If the traversal completes without finding any repeated node, the function returns `false`, indicating no cycle is present. This method has a **time complexity of O(n)** due to single traversal and **space complexity of O(n)** for storing node addresses.
+Code : 
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL || head->next == NULL){
+            return false;
+        }
+        ListNode* current = head;
+        unordered_map<ListNode*,int> hashmap;
+        while(current->next!=NULL) {
+            hashmap[current] = current->val;
+            current = current->next;
+            if(hashmap.find(current)!=hashmap.end()){
+                return true;
+            }
+        }
+        return false;
+    }
+};
