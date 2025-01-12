@@ -1,0 +1,25 @@
+Explanation : This code checks if a linked list is a palindrome by using a stack to reverse and compare node values. In the first traversal, it pushes all node values onto a stack, storing them in reverse order due to the stack's LIFO nature. In the second traversal, it compares each node's value with the top value of the stack. If any mismatch is found, it returns `false`. If all values match, it confirms the list is a palindrome and returns `true`. The algorithm runs in **O(n)** time and uses **O(n)** space for the stack.
+
+Code : 
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        stack<int> stack;
+        ListNode* temp = head;
+        while(temp!=NULL) {
+            stack.push(temp->val);
+            temp = temp->next;
+        }
+        ListNode* current = head;
+        while(current!=NULL) {
+            if(current->val!=stack.top()){
+                return false;
+            }
+            else{
+                stack.pop();
+                current = current->next;
+            }
+        }
+        return true;
+    }
+};
